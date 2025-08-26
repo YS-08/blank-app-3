@@ -9,7 +9,6 @@ def get_recommendation(answers):
     :param answers: 사용자의 응답을 담고 있는 딕셔너리
     :return: 추천 간식(str), 판매처(str)
     """
-    # 응답에 따라 추천 간식 결정 로직
     snacks = [
         {"name": "새우깡", "place": "편의점, 마트"},
         {"name": "초코파이", "place": "편의점, 마트"},
@@ -52,3 +51,20 @@ def main():
             st.session_state.q5 = st.radio("✅ **5. 양이 많아서 나눠 먹기 좋은 간식이 좋나요?**", ('네', '아니요'))
             st.session_state.q6 = st.radio("✅ **6. 봉지에 든 간식과 상자에 든 간식 중 어느 것을 선호하시나요?**", ('봉지', '상자'))
             st.session_state.q7 = st.radio("✅ **7. 초콜릿, 젤리, 사탕 중 하나를 고른다면?**", ('초콜릿', '젤리', '사탕'))
+
+            # 제출 버튼
+            submit_button = st.form_submit_button(label='결과 보기')
+            
+            # 제출 버튼 클릭 시 결과 화면으로 전환
+            if submit_button:
+                st.session_state.submitted = True
+                st.rerun()
+    else:
+        # 결과 화면
+        st.header("✨ 당신에게 어울리는 간식은...")
+        
+        user_answers = {
+            'q1': st.session_state.q1,
+            'q2': st.session_state.q2,
+            'q3': st.session_state.q3,
+            'q4': st.session_state
