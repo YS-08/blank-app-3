@@ -67,4 +67,22 @@ def main():
             'q1': st.session_state.q1,
             'q2': st.session_state.q2,
             'q3': st.session_state.q3,
-            'q4': st.session_state
+            'q4': st.session_state.q4,
+            'q5': st.session_state.q5,
+            'q6': st.session_state.q6,
+            'q7': st.session_state.q7
+        }
+        
+        recommended_snack, place = get_recommendation(user_answers)
+        
+        st.success(f"**{recommended_snack}** 입니다!")
+        st.info(f"📍 **판매처:** {place}")
+        
+        # 다시 시작 버튼
+        if st.button("다시 추천받기"):
+            st.session_state.submitted = False
+            st.rerun()
+
+# 앱 실행
+if __name__ == "__main__":
+    main()
